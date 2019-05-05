@@ -17,7 +17,6 @@ from PyQt5 import QtCore
 class Dnn(QtCore.QObject):
     model = None
     def __init__(self, X_data, Y_data):
-        print("Ya rodilsya")
         self.X = X_data
         self.Y = Y_data
 
