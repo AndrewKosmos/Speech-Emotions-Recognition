@@ -2,6 +2,5 @@
 *Speech Emotions Recognition Project*
 
 ###### TODO:
-        + Create DNN
-        + Mic audio recording
-        + Recognition
+        * Mic audio recording
+        * Recognition
