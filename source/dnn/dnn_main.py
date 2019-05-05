@@ -8,6 +8,7 @@ from dnn import *
 
 class MainWindow(QtWidgets.QMainWindow):
     dname = ""
+    dnn = None
     def __init__(self):
         super(MainWindow,self).__init__()
         self.ui = Ui_MainWindow()
@@ -17,6 +18,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.pb_path.clicked.connect(self.pathSelect)
         self.ui.pb_exctract.clicked.connect(self.extractFeatures)
         self.ui.pb_teach.clicked.connect(self.teachClicked)
+        self.ui.pb_quality.clicked.connect(self.checkQuality)
     
     def pathSelect(self):
         self.dname = QtWidgets.QFileDialog.getExistingDirectory(self,"Select Directory")
@@ -37,10 +39,13 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.pb_quality.setEnabled(True)
         X_data = np.load("models/X.npy")
         Y_data = np.load("models/Y.npy")
-        dnn = Dnn(X_data, Y_data)
-        dnn.setParams(600, 300, 150)
-        dnn.create_model()
-        dnn.fit_model()
+        self.dnn = Dnn(X_data, Y_data)
+        self.dnn.setParams(600, 300, 150)
+        self.dnn.create_model()
+        self.dnn.fit_model()
+
+    def checkQuality(self):
+        self.dnn.calcConfusionMatrix()
         
 
 app = QtWidgets.QApplication([])

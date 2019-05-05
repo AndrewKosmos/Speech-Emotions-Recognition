@@ -12,10 +12,12 @@ from keras.models import Sequential
 from keras.layers import Dense, Activation, Dropout
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import confusion_matrix
+from keras.models import load_model
 from PyQt5 import QtCore
 
 class Dnn(QtCore.QObject):
     model = None
+    emotions = ['neutral', 'calm', 'happy', 'sad', 'angry', 'fear', 'disgust', 'surprised']
     def __init__(self, X_data, Y_data):
         self.X = X_data
         self.Y = Y_data
@@ -57,3 +59,26 @@ class Dnn(QtCore.QObject):
         self.model.fit(self.train_x, self.train_y, epochs=n_epochs, batch_size=batch_s, verbose=is_verbose)
         self.model.save(save_filepath)
         QtCore.qDebug("model saved!")
+
+    def calcConfusionMatrix(self):
+        prediction = self.model.predict(self.test_x, batch_size=4)
+        label_predict = np.argmax(prediction, 1)
+        predicted_emo = []
+
+        for i in range(0, self.test_y.shape[0]):
+            emotion = self.emotions[label_predict[i]]
+            predicted_emo.append(emotion)
+
+        actual_emo = []
+        label_true = np.argmax(self.test_y, 1)
+        for i in range(0, self.test_y.shape[0]):
+            emo = self.emotions[label_true[i]]
+            actual_emo.append(emo)
+
+        confusion_mx = confusion_matrix(actual_emo, predicted_emo)
+        index = ['angry', 'calm', 'disgust', 'fearful', 'happy', 'neutral', 'sad', 'surprised'] 
+        columns = ['angry', 'calm', 'disgust', 'fearful', 'happy', 'neutral', 'sad', 'surprised'] 
+        confusion_matrix_df = pd.DataFrame(confusion_mx, index, columns)
+        plt.figure(figsize=(10,6))
+        sns.heatmap(confusion_matrix_df, annot=True)
+        plt.show()
