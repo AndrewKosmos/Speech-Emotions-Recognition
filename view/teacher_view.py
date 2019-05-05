@@ -11,7 +11,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(800, 175)
+        MainWindow.resize(800, 228)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.gridLayout = QtWidgets.QGridLayout(self.centralwidget)
@@ -26,13 +26,16 @@ class Ui_MainWindow(object):
         self.le_path.setObjectName("le_path")
         self.gridLayout.addWidget(self.le_path, 1, 0, 1, 1)
         spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
-        self.gridLayout.addItem(spacerItem, 4, 0, 1, 1)
+        self.gridLayout.addItem(spacerItem, 5, 0, 1, 1)
         self.pb_teach = QtWidgets.QPushButton(self.centralwidget)
         self.pb_teach.setObjectName("pb_teach")
         self.gridLayout.addWidget(self.pb_teach, 3, 0, 1, 2)
         self.pb_exctract = QtWidgets.QPushButton(self.centralwidget)
         self.pb_exctract.setObjectName("pb_exctract")
         self.gridLayout.addWidget(self.pb_exctract, 2, 0, 1, 2)
+        self.pb_quality = QtWidgets.QPushButton(self.centralwidget)
+        self.pb_quality.setObjectName("pb_quality")
+        self.gridLayout.addWidget(self.pb_quality, 4, 0, 1, 2)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 22))
@@ -52,4 +55,5 @@ class Ui_MainWindow(object):
         self.pb_path.setText(_translate("MainWindow", "Выбрать"))
         self.pb_teach.setText(_translate("MainWindow", "Обучить"))
         self.pb_exctract.setText(_translate("MainWindow", "Извлечь полезные данные"))
+        self.pb_quality.setText(_translate("MainWindow", "Качество DNN"))
 
