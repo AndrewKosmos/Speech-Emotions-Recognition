@@ -7,11 +7,11 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>175</height>
+    <height>228</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Обучающая программа</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
@@ -32,7 +32,7 @@
     <item row="1" column="0">
      <widget class="QLineEdit" name="le_path"/>
     </item>
-    <item row="3" column="0">
+    <item row="5" column="0">
      <spacer name="verticalSpacer">
       <property name="orientation">
        <enum>Qt::Vertical</enum>
@@ -45,10 +45,24 @@
       </property>
      </spacer>
     </item>
-    <item row="2" column="0" colspan="2">
+    <item row="3" column="0" colspan="2">
      <widget class="QPushButton" name="pb_teach">
       <property name="text">
        <string>Обучить</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0" colspan="2">
+     <widget class="QPushButton" name="pb_exctract">
+      <property name="text">
+       <string>Извлечь полезные данные</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="0" colspan="2">
+     <widget class="QPushButton" name="pb_quality">
+      <property name="text">
+       <string>Качество DNN</string>
       </property>
      </widget>
     </item>
